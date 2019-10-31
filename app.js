@@ -27,6 +27,29 @@ app.use(
   }),
 );
 
+// Auth
+require('./src/config/passport.js')(app);
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((id, done) => {
+  done(null, id);
+});
+
+function authProtect(req, res, next) {
+  if (req.isAuthenticated()) {
+    if (req.user.isBlocked === 1) {
+      res.redirect('/contact/admin');
+    } else {
+      next();
+    }
+  } else {
+    res.redirect('/auth/login');
+  }
+}
+
 app.use(morgan('tiny'));
 
 /* allows to call static items in pulic folder such as images */
@@ -34,9 +57,14 @@ app.use(express.static('./public'));
 
 // Define Routers
 const homeRouter = require('./src/routes/homeRoutes');
+const authRoutes = require('./src/routes/authRoutes');
+const dashboardRoutes = require('./src/routes/dashboardRoutes');
+
 
 // Use Routers
 app.use('/', homeRouter);
+app.use('/auth/', authRoutes);
+app.use('/dashboard/', authProtect, dashboardRoutes);
 
 app.listen(8080, () => {
   debug('listening on port 8080');
