@@ -16,7 +16,7 @@ authRouter.route('/login')
 
 authRouter.route('/login/failed')
   .get((req, res) => {
-    res.render('auth/login, { loginError: true }');
+    res.render('auth/login', { loginError: true });
   });
 
 authRouter.route('/logout')
@@ -34,34 +34,19 @@ authRouter.route('/register')
 
     // fix error
     if (errors.length !== 0) {
-      res.render('register', {
+      res.render('auth/register', {
         isLoggedIn: req.isAuthenticated(),
         errors,
         body: req.body,
       });
       return;
     }
-
-    // check captcha
-    const secretKey = '6LewQqIUAAAAAOhyNFLeE1sS4vXEZDQ_iI87gSTO';
-    const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body.recaptcha_response}`;
-
-    request(verificationUrl, (error, response, body) => {
-      const parsedBody = JSON.parse(body);
-      // Success will be true or false depending upon captcha validation.
-      if (parsedBody.success !== undefined && !parsedBody.success) {
-        res.render('register', {
-          isLoggedIn: req.isAuthenticated(),
-          errors: [{ msg: 'Failed captcha verification' }],
-          body: req.body,
-        });
-      } else {
-        User.register(req.body.name, req.body.email, req.body.password)
-          .then((userID) => {
-            req.login({ id: userID }, () => res.redirect('/'));
-          });
-      }
+   
+    User.register(req.body.name, req.body.email, req.body.password)
+    .then((userID) => {
+      req.login({ id: userID }, () => res.redirect('/'));
     });
+
   });
 
 authRouter.route('/login')

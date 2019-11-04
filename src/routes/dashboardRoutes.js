@@ -5,7 +5,7 @@ const dashboardRoutes = express.Router();
 
 dashboardRoutes.route('/')
   .get((req, res) => {
-    res.send('d');
+    res.render('dashboard');
   });
 
 

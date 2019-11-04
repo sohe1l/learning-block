@@ -41,8 +41,18 @@
                 <h4 class="card-title mt-3">Create Account</h4>
                 <p class="">Get started with your free account</p>
 
+                
+                <%if (typeof errors != 'undefined') { %>
+                <div class="alert alert-danger" style="text-align:left">
+                    <ul style="padding-left: 15px;">
+                    <% errors.forEach(function(err){ %>
+                    <li><%= err.msg %></li>
+                    <% }) %>
+                    </ul>
+                </div>
+                <% } %>
 
-                <form class="mx-auto" style="max-width: 500px">
+                <form class="mx-auto" style="max-width: 500px" method="POST" action="/auth/register/">
                     <p class="divider-text">
                         <span class="bg-light">Your Information</span>
                     </p>
@@ -52,7 +62,7 @@
                                 <i class="fa fa-user"></i>
                             </span>
                         </div>
-                        <input name="" class="form-control" placeholder="Full name" type="text">
+                        <input name="name" class="form-control" placeholder="Full name" type="text" value="<%= (typeof body != 'undefined' && typeof body.name != 'undefined')?body.name:'' %>">
                     </div>
                     <!-- form-group// -->
                     <div class="form-group input-group">
@@ -61,7 +71,7 @@
                                 <i class="fa fa-envelope"></i>
                             </span>
                         </div>
-                        <input name="" class="form-control" placeholder="Email address" type="email">
+                        <input name="email" class="form-control" placeholder="Email address" type="email" value="<%= (typeof body != 'undefined' && typeof body.email != 'undefined')?body.email:'' %>">
                     </div>
                     <!-- form-group// -->
 
@@ -71,7 +81,7 @@
                                 <i class="fa fa-lock"></i>
                             </span>
                         </div>
-                        <input class="form-control" placeholder="Create password" type="password">
+                        <input name="password" class="form-control" placeholder="Create password" type="password">
                     </div>
                     <!-- form-group// -->
                     <div class="form-group input-group">
@@ -80,8 +90,26 @@
                                 <i class="fa fa-lock"></i>
                             </span>
                         </div>
-                        <input class="form-control" placeholder="Repeat password" type="password">
+                        <input name="password_confirm" class="form-control" placeholder="Repeat password" type="password">
                     </div>
+
+                    <div class="form-group" style="padding-left: 0px;">   
+                        <input
+                        name="terms"
+                        type="checkbox"
+                        value="1"
+                        id="termsAndConditionsCheck"
+                        <%= (typeof body != 'undefined' && typeof body.terms != 'undefined')?'checked':'' %>
+                        />
+                        <label for="termsAndConditionsCheck">
+                        Agree to <a href="#" style="color: blue;">terms and conditions</a>
+                        </label>
+                    </div>
+                    
+
+
+
+
                     <!-- form-group// -->
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
