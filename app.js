@@ -15,6 +15,7 @@ Run "DEBUG=* node app.js" to get all message or run "DEBUG=app node app.js"
 to get messages for this file only. */
 const debug = require('debug')('app');
 
+
 // will allow to get form submited data using request.body
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -59,12 +60,16 @@ app.use(express.static('./public'));
 const homeRouter = require('./src/routes/homeRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 const dashboardRoutes = require('./src/routes/dashboardRoutes');
+const learnRoutes = require('./src/routes/learnRoutes');
+const evalRoutes = require('./src/routes/evalRoutes');
 
 
 // Use Routers
 app.use('/', homeRouter);
 app.use('/auth/', authRoutes);
 app.use('/dashboard/', authProtect, dashboardRoutes);
+app.use('/learn/', authProtect, learnRoutes);
+app.use('/eval/', authProtect, evalRoutes);
 
 app.listen(8080, () => {
   debug('listening on port 8080');
