@@ -1,5 +1,5 @@
 const express = require('express');
-
+const dotenv = require("dotenv").config();
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
@@ -7,6 +7,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 
 /* Morgan is used for logging http request in the console */
 const morgan = require('morgan');

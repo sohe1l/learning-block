@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/sohe1l/learning-block#readme",
   "dependencies": {
+    "@google-cloud/translate": "^5.0.1",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
