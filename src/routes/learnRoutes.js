@@ -10,7 +10,7 @@ const routes = express.Router();
   .get((req, res) => getLearn(req,res));
 
   
-  async function getLearn(req, res){
+  function getLearn(req, res){
     //const target = req.params.target;
     //const level = req.params.level;
     //const native = req.params.native;
@@ -21,11 +21,20 @@ const routes = express.Router();
 
     // translate
     // Imports the Google Cloud client library
-    const {Translate} = require('@google-cloud/translate');
-    const projectID = "learningblocks-258219"
+    const {Translate} = require('@google-cloud/translate').v2;
+    const projectID = 'learningblocks-258219'
+    
     // Instantiates a client
     const translate = new Translate({projectID});
 
+    async function listLanguages() {
+      // Lists available translation language with their names in English (the default).
+      const [languages] = await translate.getLanguages();
+  
+      console.log('Languages:');
+      languages.forEach(language => console.log(language));
+    }
+    listLanguages();
     // The text to translate
     const text = 'Hello, world!';
 
@@ -33,9 +42,16 @@ const routes = express.Router();
     const target = 'ru';
 
     // Translates some text into Russian
-    const [translation] = await translate.translate(text, target);
-    console.log(`Text: ${text}`);
-    console.log(`Translation: ${translation}`);
+    async function translateText() {
+      
+      let [translations] = await translate.translate(text, target);
+      translations = Array.isArray(translations) ? translations : [translations];
+      console.log('Translations:');
+      translations.forEach((translation, i) => {
+        console.log(`${text[i]} => (${target}) ${translation}`);
+      });
+    }
+    translateText();
 
     //var results = [];
 
