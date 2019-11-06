@@ -1,0 +1,16 @@
+body{
+  background-image: url("https://images.app.goo.gl/d17PY5LAZf3DjdrFhttps://www.avidbots.com/wp-content/uploads/2019/02/Artboard-2.png");
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+div.box {
+  box-sizing: border-box;
+  width: 400px;
+  display:inline-block;
+}

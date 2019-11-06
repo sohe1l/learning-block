@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
+const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
@@ -54,7 +55,7 @@ function authProtect(req, res, next) {
 app.use(morgan('tiny'));
 
 /* allows to call static items in pulic folder such as images */
-app.use(express.static('./public'));
+app.use(express.static(path.join(__dirname,'public')));
 
 // Define Routers
 const homeRouter = require('./src/routes/homeRoutes');
