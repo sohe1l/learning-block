@@ -14,36 +14,32 @@ const routes = express.Router();
     //const target = req.params.target;
     //const level = req.params.level;
     //const native = req.params.native;
-    const level = 1;
-    const native = 'English';
+    //const level = 1;
+    //const native = 'English';
     // add level
     // const [words, fields] = await db.query("SELECT * FROM words ORDER BY RAND() LIMIT 0,5");
 
     // translate
     // Imports the Google Cloud client library
-    // Imports the Google Cloud client library
-    const Translate = require('@google-cloud/translate');
+    const {Translate} = require('@google-cloud/translate');
+    const projectID = "learningblocks-258219"
+    // Instantiates a client
+    const translate = new Translate({projectID});
 
-    // Creates a client
-    const translate = new Translate();
+    // The text to translate
+    const text = 'Hello, world!';
 
-    // Lists available translation language with their names in English (the default).
-    translate
-      .getLanguages()
-      .then(results => {
-        const languages = results[0];
+    // The target language
+    const target = 'ru';
 
-        console.log('Languages:');
-        languages.forEach(language => console.log(language));
-      })
-      .catch(err => {
-        console.error('ERROR:', err);
-      });
-
+    // Translates some text into Russian
+    const [translation] = await translate.translate(text, target);
+    console.log(`Text: ${text}`);
+    console.log(`Translation: ${translation}`);
 
     //var results = [];
 
-    res.render('learn', {results: translation});
+    //res.render('learn', {results: translation});
   }
 
 
