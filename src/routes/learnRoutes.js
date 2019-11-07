@@ -25,14 +25,16 @@ async function getLearn(req, res){
 }
 
   async function translateText(text,sentence) {
-    const target = 'ru';
+    const target = 'ar';
     console.log(text);
     const [word_translation] = await translate.translate(text, target);
     console.log(`Word Translation: ${word_translation}`);
     const [sent_translation] = await translate.translate(sentence, target);
     console.log(`Sentence Translation: ${sent_translation}`);
-    res.render('learn', {translation: word_translation});
-    
+    //res.render('learn', {translation: word_translation});
+    const target1 = 'en'
+    const [converted] = await translate.translate(word_translation, target1);
+    console.log(`converted: ${converted}`);
   }
 
     //var results = [];
