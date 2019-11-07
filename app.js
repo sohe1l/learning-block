@@ -1,5 +1,5 @@
 const express = require('express');
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv").config({path:'.env'});
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', './src/views');

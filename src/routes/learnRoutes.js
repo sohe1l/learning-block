@@ -1,6 +1,5 @@
 const express = require('express');
 const db = require('../model/database.js');
-require('dotenv').config();
 const routes = express.Router();
 
   // http://localhost:8080/learn/spanish/level/1/from/english
@@ -11,14 +10,13 @@ const routes = express.Router();
 
   
   function getLearn(req, res){
-    //const target = req.params.target;
+    const target = req.params.target;
+    const native = req.params.native;
     //const level = req.params.level;
-    //const native = req.params.native;
-    //const level = 1;
     //const native = 'English';
     // add level
-    // const [words, fields] = await db.query("SELECT * FROM words ORDER BY RAND() LIMIT 0,5");
-
+    const [words, sentence, level] =  db.query("SELECT word, sentence, level FROM words ORDER BY RAND() LIMIT 0,5");
+    console.log(`Words: ${words}`);
     // translate
     // Imports the Google Cloud client library
     const {Translate} = require('@google-cloud/translate').v2;
@@ -27,35 +25,27 @@ const routes = express.Router();
     // Instantiates a client
     const translate = new Translate({projectID});
 
-    async function listLanguages() {
-      // Lists available translation language with their names in English (the default).
-      const [languages] = await translate.getLanguages();
-  
-      console.log('Languages:');
-      languages.forEach(language => console.log(language));
-    }
-    listLanguages();
     // The text to translate
-    const text = 'Hello, world!';
+    const text = words;
 
     // The target language
-    const target = 'ru';
+    //const target = 'ru';
 
     // Translates some text into Russian
     async function translateText() {
       
-      let [translations] = await translate.translate(text, target);
-      translations = Array.isArray(translations) ? translations : [translations];
-      console.log('Translations:');
-      translations.forEach((translation, i) => {
-        console.log(`${text[i]} => (${target}) ${translation}`);
-      });
+      const [translation] = await translate.translate(text, target);
+
+      console.log(`Text: ${text}`);
+
+      console.log(`Translation: ${translation}`);
+      res.render('learn', {translation: translation});
     }
     translateText();
 
     //var results = [];
 
-    //res.render('learn', {results: translation});
+    
   }
 
 
