@@ -63,7 +63,7 @@ const authRoutes = require('./src/routes/authRoutes');
 const dashboardRoutes = require('./src/routes/dashboardRoutes');
 const learnRoutes = require('./src/routes/learnRoutes');
 const evalRoutes = require('./src/routes/evalRoutes');
-const speechRoutes = require('./src/routes/textSpeechRoute');
+// const speechRoutes = require('./src/routes/textSpeechRoute');
 
 
 
@@ -73,7 +73,7 @@ app.use('/auth/', authRoutes);
 app.use('/dashboard/', authProtect, dashboardRoutes);
 app.use('/learn/', authProtect, learnRoutes);
 app.use('/eval/', authProtect, evalRoutes);
-app.use('/learn/speech/', speechRoutes);
+// app.use('/learn/speech/', speechRoutes);
 
 app.listen(8080, () => {
   debug('listening on port 8080');
