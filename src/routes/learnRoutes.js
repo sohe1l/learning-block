@@ -32,6 +32,7 @@ async function getLearn(req, res){
     const [sent_translation] = await translate.translate(sentence, target);
     console.log(`Sentence Translation: ${sent_translation}`);
     res.render('learn', {translation: word_translation});
+    
   }
 
     //var results = [];
