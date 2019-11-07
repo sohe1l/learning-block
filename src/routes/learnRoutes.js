@@ -1,7 +1,9 @@
 const express = require('express');
 const db = require('../model/database.js');
 const routes = express.Router();
-
+const {Translate} = require('@google-cloud/translate').v2;
+const projectID = 'learningblocks-258219'
+const translate = new Translate({projectID});
   // http://localhost:8080/learn/spanish/level/1/from/english
   //routes.route('/:target/level/:level/from/:native')
   routes.route('/languages')
@@ -9,44 +11,31 @@ const routes = express.Router();
   .get((req, res) => getLearn(req,res));
 
   
-  function getLearn(req, res){
-    const target = req.params.target;
+  async function getLearn(req, res){
     const native = req.params.native;
     //const level = req.params.level;
     //const native = 'English';
     // add level
-    const [words, sentence, level] =  db.query("SELECT word, sentence, level FROM words ORDER BY RAND() LIMIT 0,5");
-    console.log(`Words: ${words}`);
-    // translate
-    // Imports the Google Cloud client library
-    const {Translate} = require('@google-cloud/translate').v2;
-    const projectID = 'learningblocks-258219'
-    
-    // Instantiates a client
-    const translate = new Translate({projectID});
+    const result =  await db.query("SELECT * FROM words ORDER BY RAND() LIMIT 0,5");
+    for(i=0; i<result[0].length;i++){
+      const text = result[0][i]['word'];
+      const sentence = result[0][i]['sentence'];
+      translateText(text, sentence);
 
-    // The text to translate
-    const text = words;
-
-    // The target language
-    //const target = 'ru';
-
-    // Translates some text into Russian
-    async function translateText() {
-      
-      const [translation] = await translate.translate(text, target);
-
-      console.log(`Text: ${text}`);
-
-      console.log(`Translation: ${translation}`);
-      res.render('learn', {translation: translation});
     }
-    translateText();
-
-    //var results = [];
-
-    
   }
 
+  async function translateText(text,sentence) {
+    const target = 'ru';
+
+    console.log(text);
+    const [word_translation] = await translate.translate(text, target);
+    console.log(`Word Translation: ${word_translation}`);
+    const [sent_translation] = await translate.translate(sentence, target);
+    console.log(`Sentence Translation: ${sent_translation}`);
+    res.render('learn', {translation: word_translation});
+  }
+
+    //var results = [];
 
 module.exports = routes;
