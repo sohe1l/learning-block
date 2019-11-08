@@ -12,15 +12,17 @@ routes.route('/languages')
   
 async function getLearn(req, res){
   const native = req.params.native;
-    //const level = req.params.level;
-    //const native = 'English';
-    // add level
+  const level = req.params.level;
   const result =  await db.query("SELECT * FROM words ORDER BY RAND() LIMIT 0,5");
     for(i=0; i<result[0].length;i++){
       const text = result[0][i]['word'];
       const sentence = result[0][i]['sentence'];
       console.log(text);
-      translateText(text, sentence);
+      if(native!='English')
+      {
+
+      }
+      translateText(text, sentence, res);
     }
 }
 
