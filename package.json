@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/sohe1l/learning-block#readme",
   "dependencies": {
+    "@google-cloud/text-to-speech": "^1.4.1",
     "@google-cloud/translate": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
