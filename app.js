@@ -1,5 +1,5 @@
 const express = require('express');
-
+const dotenv = require("dotenv").config({path:'.env'});
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
@@ -7,6 +7,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 
 /* Morgan is used for logging http request in the console */
 const morgan = require('morgan');
@@ -57,13 +58,28 @@ app.use(morgan('tiny'));
 /* allows to call static items in pulic folder such as images */
 app.use(express.static(path.join(__dirname,'public')));
 
+
+/*keep static dictionary for language codes*/
+lang_dict_speech = {
+  'english': 'en-US',
+  'spanish': 'es-ES',
+  'russian': 'ru-RU',
+  'italian': 'it-IT',
+  'french' : 'fr-FR',
+  'german' : 'de-DE',
+  'dutch'  : 'nl-NL',
+  'arabic' : 'ar-XA',
+  'mandarin chinese' : 'cmn-CN'
+};
+
+
+
 // Define Routers
 const homeRouter = require('./src/routes/homeRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 const dashboardRoutes = require('./src/routes/dashboardRoutes');
 const learnRoutes = require('./src/routes/learnRoutes');
 const evalRoutes = require('./src/routes/evalRoutes');
-// const speechRoutes = require('./src/routes/textSpeechRoute');
 
 
 
@@ -73,7 +89,6 @@ app.use('/auth/', authRoutes);
 app.use('/dashboard/', authProtect, dashboardRoutes);
 app.use('/learn/', authProtect, learnRoutes);
 app.use('/eval/', authProtect, evalRoutes);
-// app.use('/learn/speech/', speechRoutes);
 
 app.listen(8080, () => {
   debug('listening on port 8080');
