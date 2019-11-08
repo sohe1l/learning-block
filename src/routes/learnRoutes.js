@@ -17,7 +17,8 @@ res.render('learn');});
   
 async function getLearn(req, res){
   const native = req.params.native;
-    // add level
+
+  const level = req.params.level;
   const result =  await db.query("SELECT * FROM words ORDER BY RAND() LIMIT 0,5");
     for(i=0; i<result[0].length;i++){
       const text = result[0][i]['word'];
@@ -28,18 +29,25 @@ async function getLearn(req, res){
       getSpeech(translated['sentence'], req.params.target, 'targetSentence');
 
 
+      if(native!='English')
+      {
+
+      }
+      translateText(text, sentence, res);
     }
 }
 
   async function translateText(text,sentence) {
-    const target = 'ru';
+    const target = 'ar';
     console.log(text);
     const [word_translation] = await translate.translate(text, target);
     console.log(`Word Translation: ${word_translation}`);
     const [sent_translation] = await translate.translate(sentence, target);
     console.log(`Sentence Translation: ${sent_translation}`);
-    res.render('learn', {translation: word_translation});
-    
+    //res.render('learn', {translation: word_translation});
+    const target1 = 'en'
+    const [converted] = await translate.translate(word_translation, target1);
+    console.log(`converted: ${converted}`);
   }
 
   async function getSpeech(text, language, TextType){

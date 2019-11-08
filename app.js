@@ -7,8 +7,17 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
-console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-
+lang_dict_text = {
+  'English': 'en',
+  'Spanish': 'es',
+  'Russian': 'ru',
+  'Italian': 'it',
+  'French' : 'fr',
+  'German' : 'de',
+  'Dutch'  : 'nl',
+  'Arabic' : 'ar',
+  'Mandarin Chinese' : 'zh'
+};
 /* Morgan is used for logging http request in the console */
 const morgan = require('morgan');
 
