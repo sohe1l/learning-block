@@ -8,47 +8,45 @@ const {Translate} = require('@google-cloud/translate').v2;
 const projectID = 'learningblocks-258219'
 const translate = new Translate({projectID});
   http://localhost:8080/learn/spanish/level/1/from/english
-  routes.route('/:target/level/:level/from/:native')
+routes.route('/:target/level/:level/from/:native');
   // .get((req, res) => getSpeech(req,res));
  //routes.route('/')
 .get((req, res) => {getLearn(req,res)
-res.render('learn');});
-
   
 async function getLearn(req, res){
   const native = req.params.native;
-
+  const target = req.params.target;
   const level = req.params.level;
-  const result =  await db.query("SELECT * FROM words ORDER BY RAND() LIMIT 0,5");
-    for(i=0; i<result[0].length;i++){
+  const result =  await db.query("SELECT * FROM words where words.level = level ORDER BY RAND() LIMIT 0,5");
+    for(i=0; i<result[0].length;i++)
+    {
       const text = result[0][i]['word'];
       const sentence = result[0][i]['sentence'];
+      if(native!='English')
+      {
+        const translationOriginal = translateText(text, sentence, req.params.target);
+        const text = translationOriginal['text'];
+        const sentence = translationOriginal['sentence'];
+      };
       console.log(text);
-      const translated = translateText(text, sentence, req.params.target);
+      const translated = translateText(text, sentence, target);
       getSpeech(translated['text'], req.params.target, 'targetText');
       getSpeech(translated['sentence'], req.params.target, 'targetSentence');
 
+      var resultset = [text, sentence, translated['text'], translated['sentence']];
+      res.render('learn', {resultset:resultset});
 
-      if(native!='English')
-      {
+    };
 
-      }
-      translateText(text, sentence, res);
-    }
-}
 
-  async function translateText(text,sentence) {
-    const target = 'ar';
+  async function translateText(text,sentence,target) {
+    const target = lang_dict_text[target];
     console.log(text);
     const [word_translation] = await translate.translate(text, target);
     console.log(`Word Translation: ${word_translation}`);
     const [sent_translation] = await translate.translate(sentence, target);
     console.log(`Sentence Translation: ${sent_translation}`);
-    //res.render('learn', {translation: word_translation});
-    const target1 = 'en'
-    const [converted] = await translate.translate(word_translation, target1);
-    console.log(`converted: ${converted}`);
-  }
+  };
 
   async function getSpeech(text, language, TextType){
     const client = new textToSpeech.TextToSpeechClient();
@@ -69,10 +67,6 @@ async function getLearn(req, res){
     console.log('Audio content written to file');  
 
   };
-
-
-  
-
-    //var results = [];
-
+};
+};
 module.exports = routes;
