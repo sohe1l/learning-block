@@ -8,10 +8,10 @@ const {Translate} = require('@google-cloud/translate').v2;
 const projectID = 'learningblocks-258219'
 const translate = new Translate({projectID});
   http://localhost:8080/learn/spanish/level/1/from/english
-routes.route('/:target/level/:level/from/:native');
+routes.route('/:target/level/:level/from/:native')
   // .get((req, res) => getSpeech(req,res));
  //routes.route('/')
-.get((req, res) => {getLearn(req,res)
+.get((req, res) => getLearn(req,res));
   
 async function getLearn(req, res){
   const native = req.params.native;
@@ -40,7 +40,7 @@ async function getLearn(req, res){
 
 
   async function translateText(text,sentence,target) {
-    const target = lang_dict_text[target];
+    target = lang_dict_text[target];
     console.log(text);
     const [word_translation] = await translate.translate(text, target);
     console.log(`Word Translation: ${word_translation}`);
@@ -68,5 +68,5 @@ async function getLearn(req, res){
 
   };
 };
-};
+
 module.exports = routes;
