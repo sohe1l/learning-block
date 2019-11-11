@@ -1,7 +1,157 @@
 <%- include('../_partials/header'); %>
+<%var languages = ["1", "2", "3", "4", "5"];%>
     <main role="main" class="container">
 
             <h1>Welcome to Dashboard!</h1>
-    </main>
+	</main>
+	
+	<!-- multistep form -->
+<form class="form-horizontal"id="msform">
+	<!-- progressbar -->
+	<ul id="progressbar">
+	  <li class="active">Select Language</li>
+	  <li>Select Proficiency</li>
+	  <li>Learn or Test</li>
+	</ul>
+	<!-- fieldsets -->
+	<fieldset>
+	  <h2 class="fs-title">Select Language</h2>
+	  <br>
+	  
+	  <div class="form-group">
+		<h3 class="fs-subtitle">Please select language you would like to learn</h3>
+	  <select class="form-control" id="target_lang" name="target_lang">
+		<option>Select Learning Language</option>
+		<% languages.forEach(function(language){ %>
+            <option value="<%= language %>"><%= language %></option>
+		<% }) %>
+	  </select>
+	  <br><br>
+	  <h3 class="fs-subtitle">Select Display language of choice</h3>
+	  <select class="form-control" id="native_lang" name="native_lang">
+			<option>Select Native Language</option>
+			<% languages.forEach(function(language){ %>
+				<option value="<%= language %>"><%= language %></option>
+			<% }) %>
+		  </select>
+	  <input type="button" name="next" class="next action-button" value="Next" />
+	</div>
+	</fieldset>
+	<fieldset>
+	  <h2 class="fs-title">Select Proficiency</h2>
+	  <br><br>
+	  <div class="form-group">
+	  <div class="switch-field">
+			<input type="radio" id="radio1" name="level" value="1" checked/>
+			<label for="radio1">LEVEL 1 <hr> Just Starting<br></label>
+			<input type="radio" id="radio2" name="level" value="2"/>
+			<label for="radio2">LEVEL 2 <hr> Know the Basics<br></label>
+			<input type="radio" id="radio3" name="level" value="3"/>
+			<label for="radio3">LEVEL 3 <hr>Learn conversation<br></label>
+	  </div>
+	  <input type="button" name="previous" class="previous action-button" value="Previous" />
+	  <input type="button" name="next" class="next action-button" value="Next" />
+	</div>
+	</fieldset>
+	<fieldset>
+	  <h2 class="fs-title">Learn or Test</h2>
+	  <div class="form-group">
+	  <div>
+	  
+	  <input type="submit" name="Learn" class="learn action-button" value="Start Learning" formaction="/learn">
+	  <input type="submit" name="Test" class="test action-button" value="Test your Skills" formaction="/test"/>
+	  </div>
+	  <input type="button" name="previous" class="previous action-button" value="Previous" />
+	  <!-- <input type="submit" name="submit" class="submit action-button" value="Submit" /> -->
+	</div>
+	</fieldset>
+  </form>
 
 <%- include('../_partials/footer'); %>
+
+<script>
+  
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent().parent();
+	console.log(current_fs.parent().parent())
+	next_fs = $(this).parent().parent().next();
+	
+	//activate next step on progressbar using the index of next_fs
+	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+	
+	//show the next fieldset
+	next_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({
+        'transform': 'scale('+scale+')',
+        'position': 'absolute'
+      });
+			next_fs.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".previous").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent().parent();
+	previous_fs = $(this).parent().parent().prev();
+	
+	//de-activate current step on progressbar
+	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+	
+	//show the previous fieldset
+	previous_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'left': left});
+			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+$(".submit").click(function(){
+	return false;
+})
+
+</script>
