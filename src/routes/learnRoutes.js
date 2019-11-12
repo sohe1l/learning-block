@@ -14,25 +14,32 @@ routes.route('/:target/level/:level/from/:native')
 .get((req, res) => getLearn(req,res));
   
 async function getLearn(req, res){
-  const native = req.params.native;
-  const target = req.params.target;
+  var native = req.params.native;
+  var target = req.params.target;
   const level = req.params.level;
+  const target_lang = lang_dict_text[target];
   const result =  await db.query("SELECT * FROM words where words.level = level ORDER BY RAND() LIMIT 0,5");
     for(i=0; i<result[0].length;i++)
     {
-      const text = result[0][i]['word'];
-      const sentence = result[0][i]['sentence'];
-      if(native!='English')
+      var text = result[0][i]['word'];
+      var sentence = result[0][i]['sentence'];
+      console.log(native);
+      if(native!='english')
       {
-        const translationOriginal = translateText(text, sentence, req.params.target);
-        const text = translationOriginal['text'];
-        const sentence = translationOriginal['sentence'];
+        const translationOriginal = translateText(text, sentence, 'en');
+        text = translationOriginal['text'];
+        sentence = translationOriginal['sentence'];
+        console.log("not native");
       };
       console.log(text);
-      const translated = translateText(text, sentence, target);
-      getSpeech(translated['text'], req.params.target, 'targetText');
-      getSpeech(translated['sentence'], req.params.target, 'targetSentence');
-
+      const translated = translateText(text, sentence, target_lang);
+      console.log(translated)
+      const sessionname = req.sessionID;
+      const word_file = sessionname.concat('word');
+      const sent_file = sessionname.concat('sent');
+      getSpeech(translated['text'], req.params.target, word_file);
+      getSpeech(translated['sentence'], req.params.target, sent_file);
+      
       var resultset = [text, sentence, translated['text'], translated['sentence']];
       res.render('learn', {resultset:resultset});
 
@@ -40,7 +47,6 @@ async function getLearn(req, res){
 
 
   async function translateText(text,sentence,target) {
-    target = lang_dict_text[target];
     console.log(text);
     const [word_translation] = await translate.translate(text, target);
     console.log(`Word Translation: ${word_translation}`);
@@ -60,6 +66,7 @@ async function getLearn(req, res){
     const [response] = await client.synthesizeSpeech(request);
     // Write the binary audio content to a local file
     const writeFile = util.promisify(fs.writeFile);
+    const sessionname = req.sessionID;
     const filename = './public/audio/'.concat(TextType,'.mp3');
     // await writeFile('../../public/audio/'.concat(filename), response.audioContent, 'binary');
     await writeFile(filename, response.audioContent, 'binary');
