@@ -98,7 +98,8 @@ app.use('/', homeRouter);
 app.use('/auth/', authRoutes);
 app.use('/dashboard/', authProtect, dashboardRoutes);
 app.use('/learn/', authProtect, learnRoutes);
-app.use('/eval/', authProtect, evalRoutes);
+// TODO add authProtect middleware
+app.use('/eval/', evalRoutes); 
 
 app.listen(8080, () => {
   debug('listening on port 8080');
