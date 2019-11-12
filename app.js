@@ -7,16 +7,18 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+
+//Static dict for supported languages
 lang_dict_text = {
-  'English': 'en',
-  'Spanish': 'es',
-  'Russian': 'ru',
-  'Italian': 'it',
-  'French' : 'fr',
-  'German' : 'de',
-  'Dutch'  : 'nl',
-  'Arabic' : 'ar',
-  'Mandarin Chinese' : 'zh'
+  'english': 'en',
+  'spanish': 'es',
+  'russian': 'ru',
+  'italian': 'it',
+  'french' : 'fr',
+  'german' : 'de',
+  'dutch'  : 'nl',
+  'arabic' : 'ar',
+  'mandarin chinese' : 'zh'
 };
 /* Morgan is used for logging http request in the console */
 const morgan = require('morgan');
@@ -89,7 +91,6 @@ const authRoutes = require('./src/routes/authRoutes');
 const dashboardRoutes = require('./src/routes/dashboardRoutes');
 const learnRoutes = require('./src/routes/learnRoutes');
 const evalRoutes = require('./src/routes/evalRoutes');
-
 
 
 // Use Routers
