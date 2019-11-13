@@ -91,6 +91,7 @@ const authRoutes = require('./src/routes/authRoutes');
 const dashboardRoutes = require('./src/routes/dashboardRoutes');
 const learnRoutes = require('./src/routes/learnRoutes');
 const evalRoutes = require('./src/routes/evalRoutes');
+const audioRoutes = require('./src/routes/audioRoutes');
 
 
 // Use Routers
@@ -100,7 +101,8 @@ app.use('/dashboard/', authProtect, dashboardRoutes);
 app.use('/learn/', learnRoutes);
 // TODO add authProtect middleware
 app.use('/eval/', evalRoutes); 
+app.use('/audio/', audioRoutes); 
 
-app.listen(8080, () => {
-  debug('listening on port 8080');
+app.listen(8081, () => {
+  debug('listening on port 8081');
 });
