@@ -12,7 +12,6 @@ const passport = require('passport');
 lang_dict_text = {
   'English': 'en',
   'Spanish': 'es',
-  'spanish': 'es',
   'Russian': 'ru',
   'Italian': 'it',
   'French' : 'fr',
@@ -104,6 +103,6 @@ app.use('/learn/', learnRoutes);
 app.use('/eval/', evalRoutes); 
 app.use('/audio/', audioRoutes); 
 
-app.listen(8081, () => {
-  debug('listening on port 8081');
+app.listen(8080, () => {
+  debug('listening on port 8080');
 });
