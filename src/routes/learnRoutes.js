@@ -24,24 +24,24 @@ async function getLearn(req, res){
       var text = result[0][i]['word'];
       var sentence = result[0][i]['sentence'];
       console.log(native);
-      if(native!='english')
-      {
-        const translationOriginal = translateText(text, sentence, 'en');
-        text = translationOriginal['text'];
-        sentence = translationOriginal['sentence'];
-        console.log("not native");
-      };
-      console.log(text);
-      const translated = translateText(text, sentence, target_lang);
-      console.log(translated)
-      const sessionname = req.sessionID;
-      const word_file = sessionname.concat('word');
-      const sent_file = sessionname.concat('sent');
-      getSpeech(translated['text'], req.params.target, word_file);
-      getSpeech(translated['sentence'], req.params.target, sent_file);
+      // if(native!='english')
+      // {
+      //   const translationOriginal = translateText(text, sentence, 'en');
+      //   text = translationOriginal['text'];
+      //   sentence = translationOriginal['sentence'];
+      //   console.log("not native");
+      // };
+      // console.log(text);
+      // const translated = translateText(text, sentence, target_lang);
+      // console.log(translated)
+      // const sessionname = req.sessionID;
+      const word_file = "wf";
+      const sent_file = "sf";
+      getSpeech(text, req.params.target, word_file);
+      // getSpeech(translated['sentence'], req.params.target, sent_file);
       
-      var resultset = [text, sentence, translated['text'], translated['sentence']];
-      res.render('learn', {resultset:resultset});
+      // var resultset = [text, sentence, text, translated['sentence']];
+      // res.render('learn', {resultset:resultset});
 
     };
 

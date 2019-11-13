@@ -97,7 +97,7 @@ const evalRoutes = require('./src/routes/evalRoutes');
 app.use('/', homeRouter);
 app.use('/auth/', authRoutes);
 app.use('/dashboard/', authProtect, dashboardRoutes);
-app.use('/learn/', authProtect, learnRoutes);
+app.use('/learn/', learnRoutes);
 // TODO add authProtect middleware
 app.use('/eval/', evalRoutes); 
 
