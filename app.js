@@ -12,6 +12,7 @@ const passport = require('passport');
 lang_dict_text = {
   'English': 'en',
   'Spanish': 'es',
+  'spanish': 'es',
   'Russian': 'ru',
   'Italian': 'it',
   'French' : 'fr',
