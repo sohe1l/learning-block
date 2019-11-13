@@ -2,16 +2,26 @@
 const express = require('express');
 const db = require('../model/database.js');
 const routes = express.Router();
+<<<<<<< Updated upstream
 const {Translate} = require('@google-cloud/translate').v2;
 const projectID = 'learningblocks-258219'
 const translate = new Translate({projectID});
   // http://localhost:8080/learn/spanish/level/1/from/english
   //routes.route('/:target/level/:level/from/:native')
 routes.route('/languages')
+=======
+const googleTranslateLearn = require('google-translate')(process.env.TRANSLATE_KEY, {});
+const wordArr = [];
+const sentenceArr = [];
+const imageArr = [];
+routes.route('/:target/level/:level/from/:native')                //http://localhost:8081/learn/Spanish/level/1/from/English
+
+>>>>>>> Stashed changes
 .get((req, res) => getLearn(req,res));
 
   
 async function getLearn(req, res){
+<<<<<<< Updated upstream
   const native = req.params.native;
     //const level = req.params.level;
     //const native = 'English';
@@ -53,6 +63,35 @@ const routes = Router();
     //const target = req.params.target;
     //const level = req.params.level;
     //const native = req.params.native;
+=======
+  var native = req.params.native;
+  var target = req.params.target;
+  const level = req.params.level;
+  const targetCode = lang_dict_text[target];
+  
+  const result =  await db.query("SELECT * FROM words where words.level = ? ORDER BY RAND()", [level]);
+    
+  for(i=0; i<result[0].length;i++)
+    {
+      var text = result[0][i]['word'];
+      var sentence = result[0][i]['sentence'];
+      var image = result[0][i]['image'];
+      if(native!='English')
+      {
+        text = translateText(text,'en');
+        sentence = translateText(sentence, 'en');
+        console.log("not native");
+      };
+      const translateWord = await translateText(text, targetCode);
+      const translateSentence = await translateText(sentence, targetCode);
+     
+      wordArr.push(translateWord);
+      sentenceArr.push(translateSentence);
+      imageArr.push(image);
+    };
+ 
+  async function translateText(totranslate, target) {
+>>>>>>> Stashed changes
     
     // add level
     // const [words, fields] = await db.query("SELECT * FROM words ORDER BY RAND() LIMIT 0,5");
@@ -69,6 +108,7 @@ const routes = Router();
     projectId: projectId,
     });
 
+<<<<<<< Updated upstream
     // The text to translate
     const text = 'Hello, world!';
     // The target language
@@ -95,5 +135,11 @@ const routes = Router();
   }
 
     //var results = [];
+=======
+  };
+  resultset = {'text':wordArr, 'sentence':sentenceArr, 'image': imageArr};
+  res.render('learn', {resultset:resultset});
+};
+>>>>>>> Stashed changes
 
 export default routes;
