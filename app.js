@@ -10,15 +10,15 @@ const passport = require('passport');
 
 //Static dict for supported languages
 lang_dict_text = {
-  'english': 'en',
-  'spanish': 'es',
-  'russian': 'ru',
-  'italian': 'it',
-  'french' : 'fr',
-  'german' : 'de',
-  'dutch'  : 'nl',
-  'arabic' : 'ar',
-  'mandarin chinese' : 'zh'
+  'English': 'en',
+  'Spanish': 'es',
+  'Russian': 'ru',
+  'Italian': 'it',
+  'French' : 'fr',
+  'German' : 'de',
+  'Dutch'  : 'nl',
+  'Arabic' : 'ar',
+  'Chinese' : 'zh'
 };
 /* Morgan is used for logging http request in the console */
 const morgan = require('morgan');
@@ -72,15 +72,15 @@ app.use(express.static(path.join(__dirname,'public')));
 
 /*keep static dictionary for language codes*/
 lang_dict_speech = {
-  'english': 'en-US',
-  'spanish': 'es-ES',
-  'russian': 'ru-RU',
-  'italian': 'it-IT',
-  'french' : 'fr-FR',
-  'german' : 'de-DE',
-  'dutch'  : 'nl-NL',
-  'arabic' : 'ar-XA',
-  'mandarin chinese' : 'cmn-CN'
+  'English': 'en-US',
+  'Spanish': 'es-ES',
+  'Russian': 'ru-RU',
+  'Italian': 'it-IT',
+  'French' : 'fr-FR',
+  'German' : 'de-DE',
+  'Dutch'  : 'nl-NL',
+  'Arabic' : 'ar-XA',
+  'Chinese' : 'cmn-CN'
 };
 
 

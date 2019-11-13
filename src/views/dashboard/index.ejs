@@ -1,10 +1,10 @@
 <%- include('../_partials/header'); %>
 <%var languages = ["1", "2", "3", "4", "5"];%>
-    <main role="main" class="container">
+    <!-- <main role="main" class="container">
 
             <h1>Welcome to Dashboard!</h1>
-	</main>
-	
+	</main> -->
+	Lets begin our learning journey here!
 	<!-- multistep form -->
 <form class="form-horizontal"id="msform">
 	<!-- progressbar -->
@@ -22,16 +22,16 @@
 		<h3 class="fs-subtitle">Please select language you would like to learn</h3>
 	  <select class="form-control" id="target_lang" name="target_lang">
 		<option>Select Learning Language</option>
-		<% languages.forEach(function(language){ %>
-            <option value="<%= language %>"><%= language %></option>
+		<% Object.keys(lang_dict_text).forEach(function(key,value){ %>
+            <option value="<%= key %>"><%= key %></option>
 		<% }) %>
 	  </select>
 	  <br><br>
 	  <h3 class="fs-subtitle">Select Display language of choice</h3>
 	  <select class="form-control" id="native_lang" name="native_lang">
 			<option>Select Native Language</option>
-			<% languages.forEach(function(language){ %>
-				<option value="<%= language %>"><%= language %></option>
+			<% Object.keys(lang_dict_text).forEach(function(key,value){ %>
+				<option value="<%= key %>"><%= key %></option>
 			<% }) %>
 		  </select>
 	  <input type="button" name="next" class="next action-button" value="Next" />
@@ -58,8 +58,8 @@
 	  <div class="form-group">
 	  <div>
 	  
-	  <input type="submit" name="Learn" class="learn action-button" value="Start Learning" formaction="/learn">
-	  <input type="submit" name="Test" class="test action-button" value="Test your Skills" formaction="/test"/>
+	  <input  name="learn" class="learn action-button" value="Start Learning" formaction="/learn">
+	  <input  name="test" class="test action-button" value="Test your Skills" formaction="/test"/>
 	  </div>
 	  <input type="button" name="previous" class="previous action-button" value="Previous" />
 	  <!-- <input type="submit" name="submit" class="submit action-button" value="Submit" /> -->
@@ -152,6 +152,24 @@ $(".previous").click(function(){
 
 $(".submit").click(function(){
 	return false;
+})
+
+$(".learn").click(function(){
+	form_data = $("#msform").serializeArray();
+	target_lang = form_data[0].value;
+	native_lang = form_data[1].value;
+	level = form_data[2].value;
+	url_link = "/learn/" + target_lang + "/level/"+level +"/from/"+native_lang;
+	window.location = url_link;
+})
+
+$(".test").click(function(){
+	form_data = $("#msform").serializeArray();
+	target_lang = form_data[0].value;
+	native_lang = form_data[1].value;
+	level = form_data[2].value;
+	url_link = "/test/" + target_lang + "/level/"+level +"/from/"+native_lang;
+	window.location = url_link;
 })
 
 </script>
