@@ -12,7 +12,10 @@ var googleTranslate = require('google-translate')(process.env.TRANSLATE_KEY, {})
  * http://localhost:8080/eval/spanish/level/1/from/english
  */
 routes.route('/:target/level/:level/from/:native')
-  .get((req, res) => getTest(req, res));
+  .get((req, res) => {
+    getTest(req, res);
+    res.render('eval');
+  });
 
 
 async function getTest(req, res) {
@@ -65,5 +68,11 @@ async function translateText(text, target) {
   const [word_translation] = await translate.translate(text, target);
   console.log(`Word Translation: ${word_translation}`);
 };
+
+//End of test screen
+routes.route('/:target/level/:level/from/:native/replay')
+.get((req, res) => {
+  res.render('eval/replay');
+});
 
 module.exports = routes;
