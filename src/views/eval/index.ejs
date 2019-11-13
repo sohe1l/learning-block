@@ -1,50 +1,147 @@
 <%- include('../_partials/header'); %>
-    <title>Quick Quiz - Play</title>
-    <link rel="stylesheet" href="/stylesheets/quiz.css" />
-  <body>
-    <div class="container">
-      <div id="game" class="justify-center flex-column">
-        <div id="hud">
-          <div id="hud-item">
-            <!-- <p id="progressText" class="hud-prefix">
-              Question
-            </p> -->
-            <div id="progressBar">
-              <div id="progressBarFull"></div>
+<style>
+    #progressBar {
+        height: 1.5rem;
+        margin-top: -1.5rem;
+        margin-bottom: 1rem;
+        background: #e8ffe8;
+    }
+
+    #progressBarFull {
+        height: 1.5rem;
+        background-color: #a5dc86;
+        width: 0%;
+    }
+</style>
+<div id="progressBar">
+    <div id="progressBarFull"></div>
+</div>
+
+<div class="container" id="eval">
+
+    <div v-if="ended">
+        <div v-for="qi in q" class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img style="object-fit: cover; min-height: 100%;" class="card-img" :src="qi.img">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{qi.answer }}</h5>
+                        <p class="card-text">
+                            1) {{qi.words[0] }}
+                            2) {{qi.words[1] }}
+                            3) {{qi.words[2] }}
+                            4) {{qi.words[3] }}
+
+                        </p>
+                    </div>
+                </div>
             </div>
-            <br>
-          </div>
-          <!-- <div id="hud-item">
-            <p class="hud-prefix">
-              Score
-            </p>
-            <h1 class="hud-main-text" id="score">
-              0
-            </h1>
-          </div> -->
         </div>
-        <h2 id="question">What is the answer to this questions?</h2>
-        <br>
-        <div class="choice-container">
-          <!-- <p class="choice-prefix">A</p> -->
-          <p class="choice-text" data-number="1">Choice 1</p>
-        </div>
-        <div class="choice-container">
-          <!-- <p class="choice-prefix">B</p> -->
-          <p class="choice-text" data-number="2">Choice 2</p>
-        </div>
-        <div class="choice-container">
-          <!-- <p class="choice-prefix">C</p> -->
-          <p class="choice-text" data-number="3">Choice 3</p>
-        </div>
-        <div class="choice-container">
-          <!-- <p class="choice-prefix">D</p> -->
-          <p class="choice-text" data-number="4">Choice 4</p>
-        </div>
-      </div>
+
+
+
+
     </div>
-    <script src="/scripts/quiz.js"></script>
 
+    <div v-if="!ended">
+        <div class="col d-flex justify-content-center">
+            <div class="card" style="width: 25rem;">
+                <img class="card-img-top" :src="q[i].img">
+                <div class="card-body" style="font-size: 150%;">
+                    
+                    <div style="width: 50%; float:left">
+                        <label><input type="radio" name="ans" value="0" v-model="picked" /> {{q[i].words[0] }}</label>
+                    </div>
+                    <div style="width: 45%; float:left">
+                        <label><input type="radio" name="ans" value="1" v-model="picked" /> {{q[i].words[1] }}</label>
+                    </div>
+                    <div style="width: 50%; float:left">
+                        <label><input type="radio" name="ans" value="2" v-model="picked" /> {{q[i].words[2] }}</label>
+                    </div>
+                    <div style="width: 45%; float:left">
+                        <label><input type="radio" name="ans" value="3" v-model="picked" /> {{q[i].words[3] }}</label>
+                    </div>
 
-  <%- include('../_partials/footer'); %>
-</body>
+                    <div style="text-align: right;">
+                        <button type="button" class="btn btn-success btn-lg" v-on:click="check">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+
+    const progressText = document.getElementById("progressText");
+    const progressBarFull = document.getElementById("progressBarFull");
+
+    var app = new Vue({
+        el: '#eval',
+        data: {
+            ended: false,
+            picked: -1,
+            i: 0,
+            message: "asd",
+            q: JSON.parse('[{"words":["té","cable","adiós","móvil"],"answer":"móvil","img":"https://t4.ftcdn.net/jpg/02/34/02/29/240_F_234022949_PRxvgogCFNHPmAbzB5U74wDyumRozrOF.jpg"},{"words":["casa","llave","bolígrafo","teléfono"],"answer":"llave","img":"https://t3.ftcdn.net/jpg/02/61/49/76/240_F_261497686_qg5PcsyOxcON9yKolv2kO6HlDGEfZryG.jpg"}]'),
+        },
+        methods: {
+            check: function (event) {
+                if (this.picked < 0 || this.picked > 3) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please select an answer!',
+                    });
+                    return;
+                }
+                if (this.q[this.i].words[this.picked] != this.q[this.i].answer) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please try again! ' + this.q[this.i].words[this.picked] + '  ' + this.q[this.i].answer,
+                    });
+                    return;
+                }
+
+                const res = Swal.fire(
+                    'Good job!',
+                    'You clicked the button!',
+                    'success'
+                ).then(res => {
+                    setTimeout(() => { this.nextQuestion(); }, 500);
+                });
+            },
+            nextQuestion() {
+                // end of questions
+                if (this.i == this.q.length - 1) {
+                    this.endEval();
+                    return;
+                }
+                this.i++;
+                this.picked = -1;
+                progressBarFull.style.width = `${(this.i / this.q.length) * 100}%`;
+
+            },
+            endEval() {
+                const res = Swal.fire(
+                    'Congratulations!',
+                    'You finished the evaluation!',
+                    'success'
+                ).then(res => {
+                    setTimeout(() => {
+                        progressBarFull.style.width = `100%`;
+                        this.ended = true;
+                     }, 1000);
+                });
+            },
+        },
+    })
+</script>
+<%- include('../_partials/footer'); %>

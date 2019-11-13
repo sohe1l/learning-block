@@ -13,8 +13,7 @@ const googleTranslate = require('google-translate')(process.env.TRANSLATE_KEY, {
  */
 routes.route('/:target/level/:level/from/:native')
   .get((req, res) => {
-    getTest(req, res);
-    res.render('eval');
+    getEval(req, res);
   });
 
 
@@ -25,7 +24,7 @@ async function getEval(req, res) {
   const native = req.params.native;
   const target_lang = lang_dict_text[target]; //target_lang:es target:spanish
 
-  res.render('eval2');
+  res.render('eval');
   return;
   // console.log(target_lang);
 
@@ -78,22 +77,4 @@ async function translateTextBulk(textArr, target) {
     });
   });
 }
-
-// Changes in the function to translate all words in a loop.
-async function translateText(text, target) {
-
-
-
-  target = lang_dict_text[target];
-  console.log(text);
-  const [word_translation] = await translate.translate(text, target);
-  console.log(`Word Translation: ${word_translation}`);
-};
-
-//End of test screen
-routes.route('/:target/level/:level/from/:native/replay')
-.get((req, res) => {
-  res.render('eval/replay');
-});
-
 module.exports = routes;

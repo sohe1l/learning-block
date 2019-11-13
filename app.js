@@ -91,7 +91,7 @@ const homeRouter = require('./src/routes/homeRoutes');
 const authRoutes = require('./src/routes/authRoutes');
 const dashboardRoutes = require('./src/routes/dashboardRoutes');
 const learnRoutes = require('./src/routes/learnRoutes');
-const evalRoutes2 = require('./src/routes/evalRoutes2');
+const evalRoutes = require('./src/routes/evalRoutes');
 const audioRoutes = require('./src/routes/audioRoutes');
 
 
@@ -101,8 +101,7 @@ app.use('/auth/', authRoutes);
 app.use('/dashboard/', authProtect, dashboardRoutes);
 app.use('/learn/', learnRoutes);
 // TODO add authProtect middleware
-// app.use('/eval/', evalRoutes); 
-app.use('/eval2/', evalRoutes2); 
+app.use('/eval/', evalRoutes); 
 app.use('/audio/', audioRoutes); 
 
 app.listen(8081, () => {
