@@ -18,13 +18,14 @@ async function getLearn(req, res) {
     var text = req.params.text;
     var target = req.params.target;
     const id = req.params.id;
-
-    const rawfilename = target + text + id;
+    console.log(text);
+    const rawfilename = target + text.replace(/ /g, '_') + id;
     const filename = './public/audio/'.concat(rawfilename, '.mp3');
     
     // check if file exists
     if (fs.existsSync(filename)) {
         const content = fs.readFileSync(filename);
+        res.setHeader('Content-Type','"audio/mpeg"');
         res.send(content);
         return;
     }
@@ -47,7 +48,7 @@ async function getLearn(req, res) {
     const writeFile = util.promisify(fs.writeFile);
     const sessionname = req.sessionID;
     await writeFile(filename, response.audioContent, 'binary');
-    
+    res.setHeader('Content-Type','"audio/mpeg"');
     res.send(response.audioContent);
     return;
 };

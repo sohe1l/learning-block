@@ -38,10 +38,10 @@ async function getLearn(req, res){
       const translateSentence = await translateText(sentence, targetCode);
       if(native!='English')
       {
-        resultset[i] = {'word':trans_text, 'sentence':trans_sentence, 'image':image, 'translatedWord':translateWord, 'translatedSentence':translateSentence};
+        resultset[i] = {'word':trans_text, 'sentence':trans_sentence, 'image':image, 'translatedWord':translateWord, 'translatedSentence':translateSentence, 'target':target};
       }
       else{
-        resultset[i] = {'word':text, 'sentence':sentence, 'image':image, 'translatedWord':translateWord, 'translatedSentence':translateSentence};
+        resultset[i] = {'word':text, 'sentence':sentence, 'image':image, 'translatedWord':translateWord, 'translatedSentence':translateSentence, 'target':target};
 
       }
     };
