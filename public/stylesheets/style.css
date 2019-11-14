@@ -122,13 +122,13 @@ body {
 	box-sizing: border-box;
 	font-family: montserrat;
 	color: #2C3E50;
-	font-size: 13px;
+	font-size: 15px;
 }
 /*buttons*/
 
 
 #msform .action-button {
-	width: 100px;
+	width: 150px;
 	background: #27AE60;
 	font-weight: bold;
 	color: white;
@@ -165,10 +165,11 @@ body {
 	list-style-type: none;
 	/* color: white; */
 	text-transform: uppercase;
-	font-size: 9px;
+	font-size: 12px;
 	width: 33.33%;
 	float: left;
 	position: relative;
+	font-weight: bold;
 }
 #progressbar li:before {
 	content: counter(step);

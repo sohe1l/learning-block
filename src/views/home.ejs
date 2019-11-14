@@ -1,13 +1,29 @@
 <%- include('_partials/header'); %>
 
+
+</style>
 <main role="main" class="container">
 
-  <div class="">
-    <h1>Welcome!</h1>
-    <p class="lead">
-      <a href="/auth/login">Login</a> or 
-      <a href="/auth/register/">Register</a>.
+  <div class="welcomeHeader">
+    <h1 align="center">Welcome to the Learning Blocks!</h1>
+    <!-- <h2 align="center">Learn a new language and have fun!!</h2> -->
+    <p class="lead" align="center" style=font-size:40px;>
+      <a href="/auth/login">Login </a> or 
+      <a href="/auth/register/">Register</a> 
     </p>
+  </div>
+  <div id="carouselSlides" class="carousel slide" data-ride="carousel" data-interval=1000>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="/img/Dashboard1.jpg" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="/img/Dashboard2.jpg" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="/img/home.jpg" alt="Third slide">
+      </div>
+    </div>
   </div>
 
 </main>
