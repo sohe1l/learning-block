@@ -105,14 +105,14 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Please try again! ' + this.q[this.i].words[this.picked] + '  ' + this.q[this.i].answer,
+                        text: 'Please try again!',
                     });
                     return;
                 }
 
                 const res = Swal.fire(
                     'Good job!',
-                    'You clicked the button!',
+                    'You got it right!',
                     'success'
                 ).then(res => {
                     setTimeout(() => { this.nextQuestion(); }, 500);
