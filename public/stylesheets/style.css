@@ -1,4 +1,9 @@
-
+.navbar-nav li a:hover, .navbar-nav > .active > a {
+	color: #fff !important;
+  
+	background-color:#56bd56 !important;
+	background-image: none !important;
+  }
 
 img {
   display: block;
