@@ -24,6 +24,7 @@ async function getLearn(req, res) {
     
     // check if file exists
     if (fs.existsSync(filename)) {
+        console.log('file exists');
         const content = fs.readFileSync(filename);
         res.setHeader('Content-Type','"audio/mpeg"');
         res.send(content);
