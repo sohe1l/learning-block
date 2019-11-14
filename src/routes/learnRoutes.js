@@ -10,7 +10,6 @@ routes.route('/:target/level/:level/from/:native')                //http://local
 
 .get((req, res) =>{
   getLearn(req, res);
-  res.render('learn');
 });
 // .get((req, res) => getLearn(req,res));
 
@@ -19,14 +18,15 @@ async function getLearn(req, res){
   var target = req.params.target;
   const level = req.params.level;
   const targetCode = lang_dict_text[target];
-  resultset ={};
   const result =  await db.query("SELECT * FROM words where words.level = ? ORDER BY RAND() limit 0,5", [level]);
-    
+  resultset ={};
   for(i=0; i<result[0].length;i++)
     {
       var text = result[0][i]['word'];
       var sentence = result[0][i]['sentence'];
       var image = result[0][i]['image'];
+      
+
       if(native!='English')
       {
         nativeCode = lang_dict_text[native];
@@ -55,7 +55,9 @@ async function getLearn(req, res){
     });
 
   };
+  console.log(resultset);
   res.render('learn', {resultset:resultset});
+  console.log("happen");
 };
 
 module.exports = routes;
