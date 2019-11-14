@@ -8,7 +8,11 @@ const googleTranslateLearn = require('google-translate')(process.env.TRANSLATE_K
 
 routes.route('/:target/level/:level/from/:native')                //http://localhost:8081/learn/Spanish/level/1/from/English
 
-.get((req, res) => getLearn(req,res));
+.get((req, res) =>{
+  getLearn(req, res);
+  res.render('learn');
+});
+// .get((req, res) => getLearn(req,res));
 
 async function getLearn(req, res){
   var native = req.params.native;
@@ -41,11 +45,12 @@ async function getLearn(req, res){
     
     return new Promise((resolve, reject) => {
       googleTranslateLearn.translate(totranslate, target, function (err, translation) {
-      return resolve(translation.translatedText);
+      // return resolve(translation.translatedText);
     });
   });
 
   };
+  
 };
 
 module.exports = routes;
