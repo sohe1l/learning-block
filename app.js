@@ -98,9 +98,8 @@ const audioRoutes = require('./src/routes/audioRoutes');
 app.use('/', homeRouter);
 app.use('/auth/', authRoutes);
 app.use('/dashboard/', authProtect, dashboardRoutes);
-app.use('/learn/', learnRoutes);
-// TODO add authProtect middleware
-app.use('/eval/', evalRoutes); 
+app.use('/learn/', authProtect, learnRoutes);
+app.use('/eval/', authProtect, evalRoutes); 
 app.use('/audio/', audioRoutes); 
 
 app.listen(8080, () => {

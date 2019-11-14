@@ -32,7 +32,7 @@ async function getEval(req, res) {
   const words4API = []
   const word2Img = {};
 
-  const [result, _] = await db.query("SELECT * FROM words where words.level = ? ORDER BY RAND() LIMIT 0,8", [level]);
+  const [result, _] = await db.query("SELECT * FROM words where words.level = ? ORDER BY RAND() LIMIT 0,20", [level]);
   for (i = 0; i < result.length; i++) {
     const image = result[i]['image'];
     const word = result[i]['word'];
