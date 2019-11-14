@@ -75,7 +75,9 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="card-title mb-0"><%= resultset[2]['translatedWord'] %></h4>
                     <audio id="word_audio" style="width: 25rem; text-align: center;">
-                        <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                        <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
+                        <source src="http://localhost:8080/audio/<%= resultset[2]['translatedWord'] %>/1/English" type="audio/mpeg">
+
                         Your browser does not support the audio element.
                     </audio>
                     <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
@@ -83,7 +85,9 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="card-title mb-0"><%= resultset[0]['translatedSentence'] %></h4>
                     <audio id="word_audio" style="width: 25rem; text-align: center;">
-                        <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                        <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
+                        <source src="http://localhost:8080/audio/<%= resultset[2]['translatedSentence'] %>/1/English" type="audio/mpeg">
+
                         Your browser does not support the audio element.
                     </audio>
                     <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
@@ -101,15 +105,19 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="card-title mb-0"><%= resultset[3]['translatedWord'] %></h4>
                         <audio id="word_audio" style="width: 25rem; text-align: center;">
-                            <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                            <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
+                            <source src="http://localhost:8080/audio/<%= resultset[3]['translatedWord'] %>/1/English" type="audio/mpeg">
+    
                             Your browser does not support the audio element.
                         </audio>
                         <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="card-title mb-0"><%= resultset[0]['translatedSentence'] %></h4>
+                        <h4 class="card-title mb-0"><%= resultset[3]['translatedSentence'] %></h4>
                         <audio id="word_audio" style="width: 25rem; text-align: center;">
-                            <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                            <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
+                            <source src="http://localhost:8080/audio/<%= resultset[3]['translatedSentence'] %>/1/English" type="audio/mpeg">
+
                             Your browser does not support the audio element.
                         </audio>
                         <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
@@ -126,15 +134,19 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="card-title mb-0"><%= resultset[4]['translatedWord'] %></h4>
                         <audio id="word_audio" style="width: 25rem; text-align: center;">
-                            <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                            <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
+                            <source src="http://localhost:8080/audio/<%= resultset[4]['translatedWord'] %>/1/English" type="audio/mpeg">
+
                             Your browser does not support the audio element.
                         </audio>
                         <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="card-title mb-0"><%= resultset[0]['translatedSentence'] %></h4>
+                        <h4 class="card-title mb-0"><%= resultset[4]['translatedSentence'] %></h4>
                         <audio id="word_audio" style="width: 25rem; text-align: center;">
-                            <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                            <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
+                            <source src="http://localhost:8080/audio/<%= resultset[4]['translatedSentence'] %>/1/English" type="audio/mpeg">
+
                             Your browser does not support the audio element.
                         </audio>
                         <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
@@ -163,9 +175,9 @@
 <div class="evalButton" >
     <button type="button" style="width:350px;" class="btn btn-secondary btn-lg pull-right" id="right-panel-link">Eval Me!</button>
 </div>
-<div class="prevButton" >
+<!-- <div class="prevButton" >
     <button type="button" style="width:350px;" class="btn btn-secondary btn-lg pull-right" id="right-panel-link">Eval Me!</button>
-</div>
+</div> -->
  
 
     <script> 
