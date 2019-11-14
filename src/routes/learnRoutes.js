@@ -56,8 +56,7 @@ async function getLearn(req, res){
 
   };
   console.log(resultset);
-  res.render('learn', {resultset:resultset});
-  console.log("happen");
+  res.render('learn', {resultset:resultset, user: req.user});
 };
 
 module.exports = routes;

@@ -24,10 +24,6 @@ async function getEval(req, res) {
   const native = req.params.native;
   const target_lang = lang_dict_text[target]; //target_lang:es target:spanish
 
-  res.render('eval');
-  return;
-  // console.log(target_lang);
-
   // array of words for the test
   // each index will have following object:
   // {words:[a,b,c,d], answer:b, img:http://img.jpg}
@@ -67,7 +63,7 @@ async function getEval(req, res) {
   const questionsString = JSON.stringify(questions);
   console.log(questionsString);
 
-  res.render('eval', { questions: questionsString });
+  res.render('eval', { questions: questionsString, user: req.user });
 };
 
 async function translateTextBulk(textArr, target) {

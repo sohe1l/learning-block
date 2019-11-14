@@ -10,13 +10,13 @@ const authRouter = express.Router();
 
 authRouter.route('/login')
   .get((req, res) => {
-    res.render('auth/login');
+    res.render('auth/login', { user: req.user});
   });
 
 
 authRouter.route('/login/failed')
   .get((req, res) => {
-    res.render('auth/login', { loginError: true });
+    res.render('auth/login', { loginError: true,  user: req.user });
   });
 
 authRouter.route('/logout')
@@ -27,7 +27,7 @@ authRouter.route('/logout')
 
 authRouter.route('/register')
   .get((req, res) => {
-    res.render('auth/register');
+    res.render('auth/register', {user: req.user});
   })
   .post(validateCreateUser(), (req, res) => {
     const errors = validationResult(req).array({ onlyFirstError: true });
@@ -38,6 +38,7 @@ authRouter.route('/register')
         isLoggedIn: req.isAuthenticated(),
         errors,
         body: req.body,
+        user: req.user
       });
       return;
     }
@@ -51,7 +52,7 @@ authRouter.route('/register')
 
 authRouter.route('/login')
   .get((req, res) => {
-    res.render('register', { isLoggedIn: req.isAuthenticated() });
+    res.render('register', { isLoggedIn: req.isAuthenticated(),  user: req.user });
   })
   .post(passport.authenticate('local', {
     successRedirect: '/dashboard/',
