@@ -7,18 +7,19 @@ const routes = express.Router();
 const { Translate } = require('@google-cloud/translate').v2;
 const projectID = 'learningblocks-258219'
 const translate = new Translate({ projectID });
-http://localhost:8080/audio/word/1/english
+http://localhost:8080/audio/Hello/1/English
 
 
-routes.route('/:type/:id/:target')
+routes.route('/:text/:id/:target')
     .get((req, res) => getLearn(req, res));
 
 async function getLearn(req, res) {
     var type = req.params.type;
+    var text = req.params.text;
     var target = req.params.target;
     const id = req.params.id;
 
-    const rawfilename = target + type + id;
+    const rawfilename = target + text + id;
     const filename = './public/audio/'.concat(rawfilename, '.mp3');
     
     // check if file exists
@@ -30,8 +31,8 @@ async function getLearn(req, res) {
 
 
 
-    const [result, _] = await db.query("SELECT * FROM words where id = ?", [id]);
-    const text = (type === 'word') ? result[0]['word'] : result[0]['sentence'];
+    // const [result, _] = await db.query("SELECT * FROM words where id = ?", [id]);
+    // const text = (type === 'word') ? result[0]['word'] : result[0]['sentence'];
 
     const client = new textToSpeech.TextToSpeechClient();
     const request = {
