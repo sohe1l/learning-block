@@ -7,13 +7,23 @@
 <div class="slideshow-container">
 
         <!-- Full-width images with number and caption text -->
-        <div class="mySlides fade">
+        <div class="mySlides">
           <div class="numbertext">1 / 5</div>
           <img src="/img/home.jpg" style="width:50%">
-          <div class="text">word 1</div>
-          <div class="card-body"> -->
+          
+          <div class="card-body"> 
+                <div class="word"> <h4> Word </h4></div>
+                <div class="sentence"><h4> Sentence </h4></div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="card-title mb-0">word in learn language</h5>
+                    <h4 class="card-title mb-0">word in Target language</h4>
+                    <audio id="word_audio" style="width: 25rem; text-align: center;">
+                        <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Sentence in Target language</h4>
                     <audio id="word_audio" style="width: 25rem; text-align: center;">
                         <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
                         Your browser does not support the audio element.
@@ -23,16 +33,23 @@
             </div> 
         </div>
       
-        <div class="mySlides fade">
+        <div class="mySlides">
           <div class="numbertext">2 / 5</div>
           <img src="/img/home.jpg" style="width:50%">
-          <div class="text">word 2 </div>
-          <div class="word"> TEXT</div>
-          <div class="sentence"> SENTENCE</div>
-          <div class="card-body">
+          <div class="card-body"> 
+                <div class="word"> <h4> Word </h4></div>
+                <div class="sentence"><h4> Sentence </h4></div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="card-title mb-0" style="align-content: center;">word in learn language</h5>
-                    <audio id="word_audio">
+                    <h4 class="card-title mb-0">word in Target language</h4>
+                    <audio id="word_audio" style="width: 25rem; text-align: center;">
+                        <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Sentence in Target language</h4>
+                    <audio id="word_audio" style="width: 25rem; text-align: center;">
                         <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
@@ -42,31 +59,49 @@
 
         </div>
       
-        <div class="mySlides fade">
+        <div class="mySlides">
           <div class="numbertext">3 / 5</div>
           <img src="/img/home.jpg" style="width:50%">
-          <div class="text">word 3</div>
-          <div class="card-body">
+          <div class="card-body"> 
+                <div class="word"> <h4> Word </h4></div>
+                <div class="sentence"><h4> Sentence </h4></div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="card-title mb-0">word in learn language</h5>
-                    <audio id="word_audio">
+                    <h4 class="card-title mb-0">word in Target language</h4>
+                    <audio id="word_audio" style="width: 25rem; text-align: center;">
                         <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
                     <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
-                </div> 
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Sentence in Target language</h4>
+                    <audio id="word_audio" style="width: 25rem; text-align: center;">
+                        <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
+                </div>
             </div>
 
         </div>
 
-        <div class="mySlides fade">
+        <div class="mySlides">
             <div class="numbertext">4 / 5</div>
             <img src="/img/home.jpg" style="width:50%">
-            <div class="text">word 4</div>
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="card-title mb-0">word in learn language</h5>
-                        <audio id="word_audio">
+            <div class="card-body"> 
+                    <div class="word"> <h4> Word </h4></div>
+                    <div class="sentence"><h4> Sentence </h4></div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="card-title mb-0">word in Target language</h4>
+                        <audio id="word_audio" style="width: 25rem; text-align: center;">
+                            <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="card-title mb-0">Sentence in Target language</h4>
+                        <audio id="word_audio" style="width: 25rem; text-align: center;">
                             <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
@@ -75,14 +110,23 @@
                 </div>
         </div>
 
-        <div class="mySlides fade">
+        <div class="mySlides">
             <div class="numbertext">5 / 5</div>
             <img src="/img/home.jpg" style="width:50%">
-            <div class="text">word 5</div>
-            <div class="card-body">
+            <div class="card-body"> 
+                    <div class="word"> <h4> Word </h4></div>
+                    <div class="sentence"><h4> Sentence </h4></div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="card-title mb-0">word in learn language</h5>
-                        <audio id="word_audio">
+                        <h4 class="card-title mb-0">word in Target language</h4>
+                        <audio id="word_audio" style="width: 25rem; text-align: center;">
+                            <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <button onclick="togglePlay(word_audio)" type="button"><i class='fas fa-volume-up'></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="card-title mb-0">Sentence in Target language</h4>
+                        <audio id="word_audio" style="width: 25rem; text-align: center;">
                             <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
@@ -98,16 +142,16 @@
 
 
 
-      <!-- <br> -->
+<br>
       
-      <!-- The dots/circles -->
-      <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-        <span class="dot" onclick="currentSlide(4)"></span>
-        <span class="dot" onclick="currentSlide(5)"></span>
-      </div>
+<!-- The dots/circles -->
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+</div>
 
 <div class="evalButton" >
     <button type="button" style="width:350px;" class="btn btn-secondary btn-lg pull-right" id="right-panel-link">Eval Me!</button>
