@@ -15,7 +15,7 @@
                 <div class="sentence"><h4> <%= resultset[0]['sentence'] %> </h4></div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="card-title mb-0"><%= resultset[0]['translatedWord'] %></h4>
-                    <audio id="word_audio" style="width: 25rem; text-align: center;">
+                    <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                         <source src="http://localhost:8080/audio/<%= resultset[0]['translatedWord']%>/1/<%= resultset[0]['target']%>"  type="audio/mpeg">
                         
                         <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
@@ -25,7 +25,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="card-title mb-0"><%= resultset[0]['translatedSentence'] %></h4>
-                    <audio id="word_audio" style="width: 25rem; text-align: center;">
+                    <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                         <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
                         <source src="http://localhost:8080/audio/<%= resultset[0]['translatedSentence'] %>/1/<%= resultset[0]['target']%>" type="audio/mpeg">
 
@@ -44,7 +44,7 @@
                 <div class="sentence"><h4> <%= resultset[1]['sentence'] %> </h4></div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="card-title mb-0"><%= resultset[1]['translatedWord'] %></h4>
-                    <audio id="word_audio" style="width: 25rem; text-align: center;">
+                    <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                         <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
                         <source src="http://localhost:8080/audio/<%= resultset[1]['translatedWord'] %>/1/<%= resultset[2]['target']%>" type="audio/mpeg">
 
@@ -54,7 +54,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="card-title mb-0"><%= resultset[1]['translatedSentence'] %></h4>
-                    <audio id="word_audio" style="width: 25rem; text-align: center;">
+                    <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                         <source src="http://localhost:8080/audio/<%= resultset[1]['translatedSentence'] %>/1/<%= resultset[2]['target']%>" type="audio/mpeg">
                         <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
 
@@ -74,7 +74,7 @@
                 <div class="sentence"><h4> <%= resultset[2]['sentence'] %> </h4></div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="card-title mb-0"><%= resultset[2]['translatedWord'] %></h4>
-                    <audio id="word_audio" style="width: 25rem; text-align: center;">
+                    <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                         <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
                         <source src="http://localhost:8080/audio/<%= resultset[2]['translatedWord'] %>/1/<%= resultset[2]['target']%>" type="audio/mpeg">
 
@@ -84,7 +84,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="card-title mb-0"><%= resultset[0]['translatedSentence'] %></h4>
-                    <audio id="word_audio" style="width: 25rem; text-align: center;">
+                    <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                         <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
                         <source src="http://localhost:8080/audio/<%= resultset[2]['translatedSentence'] %>/1/<%= resultset[2]['target']%>" type="audio/mpeg">
 
@@ -104,7 +104,7 @@
                     <div class="sentence"><h4> <%= resultset[3]['sentence'] %> </h4></div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="card-title mb-0"><%= resultset[3]['translatedWord'] %></h4>
-                        <audio id="word_audio" style="width: 25rem; text-align: center;">
+                        <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                             <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
                             <source src="http://localhost:8080/audio/<%= resultset[3]['translatedWord'] %>/1/<%= resultset[3]['target']%>" type="audio/mpeg">
     
@@ -114,7 +114,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="card-title mb-0"><%= resultset[3]['translatedSentence'] %></h4>
-                        <audio id="word_audio" style="width: 25rem; text-align: center;">
+                        <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                             <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
                             <source src="http://localhost:8080/audio/<%= resultset[3]['translatedSentence'] %>/1/<%= resultset[3]['target']%>" type="audio/mpeg">
 
@@ -133,7 +133,7 @@
                     <div class="sentence"><h4> <%= resultset[4]['sentence'] %> </h4></div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="card-title mb-0"><%= resultset[4]['translatedWord'] %></h4>
-                        <audio id="word_audio" style="width: 25rem; text-align: center;">
+                        <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                             <!-- <source src=get_speechUrl(<%= resultset[4]['translatedWord'] %>, 'word') type="audio/mpeg"> -->
                             <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
                             <source src="http://localhost:8080/audio/word/<%= resultset[4]['translatedWord'] %>/<%= resultset[4]['target']%>" type="audio/mpeg">
@@ -144,7 +144,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="card-title mb-0"><%= resultset[4]['translatedSentence'] %></h4>
-                        <audio id="word_audio" style="width: 25rem; text-align: center;">
+                        <audio id="<%= resultset[0]['translatedWord']%>" style="width: 25rem; text-align: center;">
                             
                             <!-- <source src="http://localhost:8080/audio/word/1/English" type="audio/mpeg"> -->
                             <source src="http://localhost:8080/audio/<%= resultset[4]['translatedSentence'] %>/1/<%= resultset[4]['target']%>" type="audio/mpeg">
@@ -175,7 +175,7 @@
 </div>
 
 <div class="evalButton" >
-    <button type="button" style="width:350px;" class="btn btn-secondary btn-lg pull-right" id="right-panel-link">Eval Me!</button>
+    <button type="button" style="width:350px;" class="btn btn-secondary btn-lg pull-right" id="evaluate" onclick="navtoeval()">Eval Me!</button>
 </div>
 <!-- <div class="prevButton" >
     <button type="button" style="width:350px;" class="btn btn-secondary btn-lg pull-right" id="right-panel-link">Eval Me!</button>
@@ -220,7 +220,14 @@
         return id.paused ? id.play() : id.pause();
     }
     current = 0;
-    
+
+    function navtoeval(){ 
+        url = document.URL.toString();
+        eval_url = url.replace("learn","eval")
+        window.location = eval_url;
+    }
+        
+//    window.location = "www.example.com/index.php?id=" + this.id;
     
     </script>
 <%- include('../_partials/footer'); %>
