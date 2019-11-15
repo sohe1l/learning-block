@@ -210,5 +210,11 @@ body {
         width:250px;   
        }
 
+.carousel-item{
+	border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  height: 400px;
+}
         
 /*  */
