@@ -7,10 +7,13 @@
   <div class="welcomeHeader">
     <h1 align="center">Welcome to the Learning Blocks!</h1>
     <!-- <h2 align="center">Learn a new language and have fun!!</h2> -->
-    <p class="lead" align="center" style=font-size:40px;>
-      <a href="/auth/login">Login </a> or 
-      <a href="/auth/register/">Register</a> 
-    </p>
+    <%if (typeof user === "undefined") { %>
+      <p class="lead" align="center" style=font-size:40px;>
+          <a href="/auth/login">Login </a> or 
+          <a href="/auth/register/">Register</a> 
+        </p>
+    <%} %>
+    
   </div>
   <div id="carouselSlides" class="carousel slide" data-ride="carousel" data-interval=1400>
     <div class="carousel-inner">
