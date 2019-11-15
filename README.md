@@ -5,14 +5,14 @@ The Learning Blocks provide 3 different levels of proficiency for languages. Use
 
 ## Screenshots
 <div style="overflow: auto;">
-  <img src="screenshots/dashboard.png" width="175" style="float:left">
-  <img src="screenshots/dashboard2.png" width="175" style="float:left">
-  <img src="screenshots/dashboard3.png" width="175" style="float:left">
+  <img src="screenshots/dashboard.png" width="275" style="float:left">
+  <img src="screenshots/dashboard2.png" width="275" style="float:left">
+  <img src="screenshots/dashboard3.png" width="275" style="float:left">
 </div>
 
 <div style="overflow: auto;">
-  <img src="screenshots/eval.png" width="175" style="float:left">
-  <img src="screenshots/learn.png" width="175" style="float:left">
+  <img src="screenshots/eval.png" width="275" style="float:left">
+  <img src="screenshots/learn.png" width="275" style="float:left">
 </div>
 
 # First time use
