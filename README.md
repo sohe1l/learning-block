@@ -1,5 +1,19 @@
 # Learning Block
-Language learning app
+## Problem Statement
+Learning Blocks is a web based language learning tool for individuals who want to learn any new language. A user can register and learn supported languages. Users can choose the target language which they want to learn as well as native language in which they are more comfortable in learning. As of now we support English, Spanish, Russian, Italian, French, German, Dutch, Arabic and Chinese which can be chosen as either native or target language. 
+The Learning Blocks provide 3 different levels of proficiency for languages. Users can choose any level of difficulty. Users also have an option to test their knowledge before going into the learning session. After every learning session an evaluation is being done for the same difficulty level. 
+
+## Screenshots
+<div style="overflow: auto;">
+  <img src="screenshots/dashboard.png" width="175" style="float:left">
+  <img src="screenshots/dashboard2.png" width="175" style="float:left">
+  <img src="screenshots/dashboard3.png" width="175" style="float:left">
+</div>
+
+<div style="overflow: auto;">
+  <img src="screenshots/eval.png" width="175" style="float:left">
+  <img src="screenshots/learn.png" width="175" style="float:left">
+</div>
 
 # First time use
 1. Clone the repo.
